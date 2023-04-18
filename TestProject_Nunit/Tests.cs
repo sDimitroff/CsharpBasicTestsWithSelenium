@@ -30,10 +30,10 @@ namespace TestProject_Nunit
             SeleniumSetMethods.EnterText("Name", "Initial", "ExecuteAutomation");
 
             // Enter first name
-            SeleniumSetMethods.EnterText("Name", "FirstName", "Svetoslav");
+            SeleniumSetMethods.EnterText("Name", "FirstName", "Ivan");
 
             //Enter middle name
-            SeleniumSetMethods.EnterText("Name", "MiddleName", "Boykov");
+            SeleniumSetMethods.EnterText("Name", "MiddleName", "Ivanov");
 
                     
             //Get text from DDL
