@@ -49,8 +49,7 @@ namespace TestProject_Nunit
             var pageTitle = PropertiesCollection.driver.Title;
             Assert.That(pageTitle, Is.EqualTo("Execute Automation"));
 
-            Thread.Sleep(3000);
-
+     
             //Generate JavaScript Alert
             SeleniumSetMethods.Click("Name", "generate");
           
@@ -60,7 +59,7 @@ namespace TestProject_Nunit
              alert.Accept();
              alert.Accept();
 
-            Thread.Sleep(1000);
+            
         }
 
         
