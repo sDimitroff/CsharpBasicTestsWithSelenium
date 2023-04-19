@@ -16,7 +16,7 @@ namespace TestProject_Nunit
                 return PropertiesCollection.driver.FindElement(By.Id(element)).GetAttribute("value");
             if (elementtype == "Name")
                 return PropertiesCollection.driver.FindElement(By.Name(element)).GetAttribute("value");
-            else return String.Empty;
+            else return string.Empty;
 
         }
 
@@ -27,7 +27,7 @@ namespace TestProject_Nunit
                 return new SelectElement(PropertiesCollection.driver.FindElement(By.Id(element))).AllSelectedOptions.SingleOrDefault().Text;
             if (elementtype == "Name")
                 return new SelectElement(PropertiesCollection.driver.FindElement(By.Name(element))).AllSelectedOptions.SingleOrDefault().Text;
-            else return String.Empty;
+            else return string.Empty;
 
         }
 
