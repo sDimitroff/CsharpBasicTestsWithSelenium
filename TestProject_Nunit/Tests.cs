@@ -6,22 +6,22 @@ namespace TestProject_Nunit
 {
     public class Tests
     {
-          
+
 
 
         [SetUp]
         public void Setup()
         {
-            
-          
+
+
             PropertiesCollection.driver = new ChromeDriver();
             PropertiesCollection.driver.Navigate().GoToUrl("http://executeautomation.com/demosite/index.html?UserName=&Password=&Login=Login");
         }
 
         [Test]
-        public void Test1()
+        public void VerifySelectedOptions()
         {
-           
+
 
             // Select title
             SeleniumSetMethods.SelectDropDown("Id", "TitleId", "Mr.");
@@ -35,34 +35,63 @@ namespace TestProject_Nunit
             //Enter middle name
             SeleniumSetMethods.EnterText("Name", "MiddleName", "Ivanov");
 
-                    
-            //Get text from DDL
+            SeleniumSetMethods.Click("Name", "Save");
+
+           
+            var selectedTitleId = PropertiesCollection.driver.FindElement(By.XPath("//*[@id=\"TitleId\"]/option[2]"));
+            var selectedTitleIdText = selectedTitleId.Text;
             
-            Console.WriteLine("The value from my title is \n" + SeleniumGetMethods.GetTextFromDDL("Id", "TitleId"));
-            
-            // Get text
-            Console.WriteLine("The value from my title is \n" + SeleniumGetMethods.GetText("Name", "Initial"));
+            Assert.That(selectedTitleIdText.Equals("Mr."));
+
+        }
+
+        [Test]
+
+        public void GetTextFromDDL()
+        {
+
+
+            // Select title
+            SeleniumSetMethods.SelectDropDown("Id", "TitleId", "Mr.");
+
+            //Enter some text
+            SeleniumSetMethods.EnterText("Name", "Initial", "ExecuteAutomation");
+
+            // Enter first name
+            SeleniumSetMethods.EnterText("Name", "FirstName", "Ivan");
+
+            //Enter middle name
+            SeleniumSetMethods.EnterText("Name", "MiddleName", "Ivanov");
 
             SeleniumSetMethods.Click("Name", "Save");
+
+            //Get text from DDL
+            Console.WriteLine("The value from my title is \n" + SeleniumGetMethods.GetTextFromDDL("Id", "TitleId"));
             
-            //Verify page title
-            var pageTitle = PropertiesCollection.driver.Title;
-            Assert.That(pageTitle, Is.EqualTo("Execute Automation"));
-
-     
-            //Generate JavaScript Alert
-            SeleniumSetMethods.Click("Name", "generate");
-          
-            //Handle pop up alert
-            IAlert alert = PropertiesCollection.driver.SwitchTo().Alert();
-
-             alert.Accept();
-             alert.Accept();
-
-            
+           
         }
 
         
+
+        [Test]
+
+        public void VerifyPageTitle()
+        {
+            //Verify page title
+            var pageTitle = PropertiesCollection.driver.Title;
+            Assert.That(pageTitle, Is.EqualTo("Execute Automation"));
+        }
+        [Test]
+        public void HandlePopUpAlert()
+        {
+            //Handle pop-up alert
+
+            PropertiesCollection.driver.FindElement(By.Name("generate")).Click();
+            IAlert alert = PropertiesCollection.driver.SwitchTo().Alert();
+
+            alert.Accept();
+            alert.Accept();
+        }
         [TearDown] 
         public void Teardown()
         {
