@@ -39,20 +39,24 @@ namespace TestProject_Nunit
 
             SeleniumSetMethods.Click("Name", "Save");
 
-
+            //First way:
             // var selectedTitleId = PropertiesCollection.driver.FindElement(By.XPath("//*[@id=\"TitleId\"]/option[2]"));
             // var selectedTitleIdText = selectedTitleId.Text;
             //Assert.That(selectedTitleIdText.Equals("Mr."));
 
 
-          //var selectedTitleId = PropertiesCollection.driver.FindElement(By.Id("TitleId"));
-          //SelectElement selectDDl = new SelectElement(selectedTitleId);
-          //var selectedTitleIdText = selectDDl.AllSelectedOptions.SingleOrDefault().Text;
+            //Second way:
+            //var selectedTitleId = PropertiesCollection.driver.FindElement(By.Id("TitleId"));
+            //SelectElement selectDDl = new SelectElement(selectedTitleId);
+            //var selectedTitleIdText = selectDDl.AllSelectedOptions.SingleOrDefault().Text;
             //Assert.That("Mr.", Is.EqualTo(selectedTitleIdText));
+
+
+            // Third way:
 
             var selectedTitleIdText = SeleniumGetMethods.GetTextFromDDL("Id", "TitleId");
 
-            Assert.That("Mr1.", Is.EqualTo(selectedTitleIdText));
+            Assert.That("Mr.", Is.EqualTo(selectedTitleIdText));
 
         }
 
