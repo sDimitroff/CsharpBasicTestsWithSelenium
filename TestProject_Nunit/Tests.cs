@@ -1,6 +1,8 @@
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using System.Xml.Linq;
 
 namespace TestProject_Nunit
 {
@@ -19,7 +21,7 @@ namespace TestProject_Nunit
         }
 
         [Test]
-        public void VerifySelectedOptions()
+        public void VerifySelectedOption()
         {
 
 
@@ -37,17 +39,26 @@ namespace TestProject_Nunit
 
             SeleniumSetMethods.Click("Name", "Save");
 
-           
-            var selectedTitleId = PropertiesCollection.driver.FindElement(By.XPath("//*[@id=\"TitleId\"]/option[2]"));
-            var selectedTitleIdText = selectedTitleId.Text;
-            
-            Assert.That(selectedTitleIdText.Equals("Mr."));
+
+            // var selectedTitleId = PropertiesCollection.driver.FindElement(By.XPath("//*[@id=\"TitleId\"]/option[2]"));
+            // var selectedTitleIdText = selectedTitleId.Text;
+            //Assert.That(selectedTitleIdText.Equals("Mr."));
+
+
+          //var selectedTitleId = PropertiesCollection.driver.FindElement(By.Id("TitleId"));
+          //SelectElement selectDDl = new SelectElement(selectedTitleId);
+          //var selectedTitleIdText = selectDDl.AllSelectedOptions.SingleOrDefault().Text;
+            //Assert.That("Mr.", Is.EqualTo(selectedTitleIdText));
+
+            var selectedTitleIdText = SeleniumGetMethods.GetTextFromDDL("Id", "TitleId");
+
+            Assert.That("Mr1.", Is.EqualTo(selectedTitleIdText));
 
         }
 
         [Test]
 
-        public void GetTextFromDDL()
+        public void PrintTextFromDDL()
         {
 
 
