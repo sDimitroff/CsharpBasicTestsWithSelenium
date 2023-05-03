@@ -35,7 +35,7 @@ namespace TestProject_Nunit
             SeleniumSetMethods.EnterText("Name", "FirstName", "Ivan");
 
             //Enter middle name
-            SeleniumSetMethods.EnterText("Name", "MiddleName", "Ivanov");
+            SeleniumSetMethods.EnterText("Name", "MiddleName", "Petkanov");
 
             SeleniumSetMethods.Click("Name", "Save");
 
